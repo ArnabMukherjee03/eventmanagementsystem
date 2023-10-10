@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { signup,login, checkAuth, verifyUser, logOut } from "./authApi";
+import { signup,login, checkAuth, logOut } from "./authApi";
 
 
 const initialState = {
@@ -8,6 +8,7 @@ const initialState = {
   error: null,
   userstatus: "idle",
   userChecked: null,
+  userRole: null,
   verifyStatus: null,
   verifyUser: null
 };
@@ -55,17 +56,6 @@ export const authAsync = createAsyncThunk(
   }
 );
 
-export const verifyUserAsync = createAsyncThunk(
-  "auth/verifyUser",
-  async (token, { rejectWithValue }) => {
-    try {
-      const response = await verifyUser(token);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data.error);
-    }
-  }
-);
 
 export const logOutAsync = createAsyncThunk(
   "auth/logout",
@@ -111,6 +101,7 @@ export const authSlice = createSlice({
         state.status = "idle";
         state.isSuccess = true;
         state.userChecked = action.payload.id;
+        state.userRole = action.payload.role;
       })
       .addCase(loginAsync.rejected, (state, action) => {
         state.status = "rejected";
@@ -122,21 +113,10 @@ export const authSlice = createSlice({
       .addCase(authAsync.fulfilled, (state, action) => {
         state.userstatus = "idle";
         state.userChecked = action.payload.id;
+        state.userRole = action.payload.role;
       })
       .addCase(authAsync.rejected, (state, action) => {
         state.userstatus = "rejected";
-        state.error = action.payload;
-      })
-      .addCase(verifyUserAsync.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(verifyUserAsync.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.verifyStatus = action.payload.message;
-        state.verifyUser = action.payload.name;
-      })
-      .addCase(verifyUserAsync.rejected, (state, action) => {
-        state.status = "rejected";
         state.error = action.payload;
       })
       .addCase(logOutAsync.pending, (state) => {
@@ -145,6 +125,7 @@ export const authSlice = createSlice({
       .addCase(logOutAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.userChecked = null;
+        state.userRole = null;
       })
       .addCase(logOutAsync.rejected, (state, action) => {
         state.status = "rejected";
@@ -156,6 +137,7 @@ export const authSlice = createSlice({
 export const selectisSuccess = (state)=> state.auth.isSuccess;
 export const selectError = (state) => state.auth.error;
 export const selectUser = (state)=> state.auth.userChecked;
+export const selectRole = (state)=> state.auth.userRole;
 export const selectStatus = (state)=> state.auth.userstatus;
 export const selectVerifyStatus = (state)=> state.auth.verifyStatus;
 export const selectVerifyUser = (state)=> state.auth.verifyUser;

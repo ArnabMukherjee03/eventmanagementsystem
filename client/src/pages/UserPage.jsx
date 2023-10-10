@@ -4,16 +4,32 @@ import { fetchAllVendorsasync, selectAllvendors } from '../features/Product/prod
 import {NavLink} from "react-router-dom";
 import Banner from '../components/Banner';
 import Nav from '../components/Nav';
+import { selectRole, selectUser } from '../features/auth/authSlice';
+import { useNavigate } from "react-router-dom";
 
 const UserPage = () => {
   const dispatch = useDispatch();
- 
+  const navigate = useNavigate();
 
   const vendors = useSelector(selectAllvendors);
 
   useEffect(()=>{
     dispatch(fetchAllVendorsasync())
   },[dispatch])
+
+
+  const user = useSelector(selectUser);
+  const role = useSelector(selectRole);
+
+  useEffect(()=>{
+    if(!user){
+      navigate(`/`)
+    }
+    if(user && role!=="user"){
+      navigate(`/${role}`)
+    }
+  },[navigate,user,role])
+
   return (
     <div>
        <div className="min-h-screen flex flex-col">

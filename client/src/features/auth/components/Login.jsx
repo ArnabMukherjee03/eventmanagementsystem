@@ -1,6 +1,6 @@
 import React, {  useEffect, useState } from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import { loginAsync,redirectToLogin,selectisSuccess,selectError, clearError, Status} from '../authSlice';
+import { loginAsync,redirectToLogin,selectisSuccess,selectError, clearError, Status, selectRole} from '../authSlice';
 import {useNavigate} from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -12,7 +12,7 @@ const Login = () => {
   const isSuccess = useSelector(selectisSuccess);
   const error = useSelector(selectError);
   const status = useSelector(Status);
-
+  const role = useSelector(selectRole)
   
 
   const [signupData,setSignupData] = useState({
@@ -33,9 +33,9 @@ const Login = () => {
   useEffect(()=>{
     if (isSuccess) {
       dispatch(redirectToLogin());
-      navigate("/");
+      navigate(`/${role}`);
     }
-  },[dispatch,isSuccess,navigate])
+  },[dispatch,isSuccess,navigate,role])
 
   
   useEffect(()=>{

@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 import Cart from './features/Cart/components/Cart'
 import UserPage from './pages/UserPage';
 import vendorPage from './pages/vendorPage';
+import User from './protected/user';
+
 const App = () => {
   const dispatch = useDispatch();
 
@@ -19,8 +21,8 @@ const App = () => {
     <>
      <Toaster position="top-left"/>
    <Routes>
-     <Route path="/" Component={LoginPage}></Route>
-     <Route path='/signup' Component={SignupPage}></Route>
+     <Route path="/" element={<User><LoginPage/></User>}></Route>
+     <Route path='/signup' element={<User><SignupPage/></User>}></Route>
      <Route path='/user' Component={UserPage}></Route>
      <Route path='/cart' Component={Cart}></Route>
      <Route path='/vendors/:id' Component={ProductList}></Route>
