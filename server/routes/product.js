@@ -5,7 +5,7 @@ const { fetchVendors } = require('../controllers/vendor');
 const router = express.Router();
 
 router.post('/newproduct',newproduct)
-      .get('/getproducts',fetchProducts)
+      .get('/getproducts/:id',fetchProducts)
       .put('/update/:id',updateProduct)
       .delete('/delete/:id',deleteProduct) 
       .get('/vendors',fetchVendors)     

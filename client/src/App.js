@@ -8,6 +8,7 @@ import { authAsync } from "./features/auth/authSlice";
 import { useDispatch } from 'react-redux';
 import Cart from './features/Cart/components/Cart'
 import UserPage from './pages/UserPage';
+import vendorPage from './pages/vendorPage';
 const App = () => {
   const dispatch = useDispatch();
 
@@ -18,10 +19,12 @@ const App = () => {
     <>
      <Toaster position="top-left"/>
    <Routes>
-     <Route path="/login" Component={LoginPage}></Route>
+     <Route path="/" Component={LoginPage}></Route>
      <Route path='/signup' Component={SignupPage}></Route>
      <Route path='/user' Component={UserPage}></Route>
      <Route path='/cart' Component={Cart}></Route>
+     <Route path='/vendors/:id' Component={ProductList}></Route>
+     <Route path='/vendor' Component={vendorPage}></Route>
    </Routes>
    </>
   )

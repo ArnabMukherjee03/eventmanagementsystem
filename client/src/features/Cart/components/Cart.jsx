@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Nav from "../../../components/Nav";
 import {
   deleteItemFromCartAsync,
   selectCartStatus,
@@ -53,8 +54,10 @@ export default function Cart() {
 
   return (
     <>
+      <Nav/>
       <div>
-        <div className="mx-auto   bg-white max-w-6xl px-4 sm:px-6 lg:px-8">
+
+        <div className="mx-auto  pt-[80px] bg-white max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="px-4 py-6 sm:px-6">
             <div className="flow-root">
               {status === "loading" ? (

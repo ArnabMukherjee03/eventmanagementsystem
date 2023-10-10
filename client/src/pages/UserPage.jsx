@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
 import {useDispatch,useSelector} from "react-redux"
 import { fetchAllVendorsasync, selectAllvendors } from '../features/Product/productSlice';
+import {NavLink} from "react-router-dom";
+import Banner from '../components/Banner';
+import Nav from '../components/Nav';
+
 const UserPage = () => {
   const dispatch = useDispatch();
+ 
 
   const vendors = useSelector(selectAllvendors);
 
@@ -12,25 +17,21 @@ const UserPage = () => {
   return (
     <div>
        <div className="min-h-screen flex flex-col">
-      <main className="flex-grow p-4">
-        <section className="mb-4 p-4 border rounded-lg shadow">
-          <h2 className="text-xl font-semibold mb-2">Home</h2>
-          <p>
-            Welcome to the Home section! This is where you can put information about your home page.
-          </p>
-        </section>
-        <section className="mb-4 p-4 ">
+        <Nav/>
+      <main className="">
+        <Banner/>
+        <section className="mb-4 p-8">
           <h2 className="text-xl font-primary mb-2">VENDOR LIST</h2>
           
-            <div className="flex gap-2 flex-wrap justify-between">
+            <div className="flex gap-2 flex-wrap ">
             {
               vendors.map(vendor=>{
                 return(
-                  <div className="flex flex-col items-center gap-2 w-[30%]">
+                  <div className="flex flex-col border-[1px] p-4 items-center gap-2 w-[32%]">
                     <h1 className='font-primary'>{vendor.name}</h1>
-                    <h1>{vendor && vendor.category}</h1>  
-                    <p className='font-primary text-red-600'>{}</p>
-                   
+                    <h1 className='font-secondary text-xs'>Service: {vendor && vendor.category}</h1> 
+                    <p className='font-secondary text-xs'>{vendor.email}</p> 
+                    <p className='font-secondary  px-4 py-2 text-xs text-white bg-black'><NavLink to={`/vendors/${vendor._id}`}>Products</NavLink></p>         
                   </div>
                 )
               })

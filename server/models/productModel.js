@@ -10,8 +10,9 @@ const productSchema = new Schema({
         type: Number
     },
     vendorId:{
-        type: String,
-        ref: 'users'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users',
+        required: true
     },
     productImage:{
         type: String

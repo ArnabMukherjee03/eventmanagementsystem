@@ -10,7 +10,7 @@
 
 .navActive{
     background: #fff;
-    box-shadow: 0 4px 5px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    /* box-shadow: 0 4px 5px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); */
 }
 
 .bgSignup{
@@ -36,7 +36,7 @@
 }
 
 .banner{
-    background: url(https://plus.unsplash.com/premium_photo-1661396937099-8f75b601d319?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXRtfGVufDB8MHwwfHx8MA%3D%3D&auto=format&fit=crop&w=1440&q=60);
+    background: url(https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

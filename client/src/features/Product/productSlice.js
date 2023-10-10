@@ -11,9 +11,9 @@ const initialState = {
 // Define your async thunk
 export const fetchAllProductsasync = createAsyncThunk(
     'product/getProducts', 
-    async (_,{ rejectWithValue }) => {
+    async (id,{ rejectWithValue }) => {
       try {
-        const response = await fetchAllProducts();
+        const response = await fetchAllProducts(id);
         return response.data;
       } catch (error) {
         return rejectWithValue(error);
@@ -42,7 +42,6 @@ const productSlice = createSlice({
     builder
       .addCase(fetchAllProductsasync.pending, (state) => {
         state.status = 'loading';
-      
       })
       .addCase(fetchAllProductsasync.fulfilled, (state, action) => {
         state.status = 'idle';

@@ -15,22 +15,16 @@ exports.newproduct = async (req, res) => {
 
 exports.fetchProducts = async (req, res) => {
   try {
-      let allProduct = await Product.find({});
+      const {id} = await req.params;
+      const allProduct = await Product.find({vendorId:id}).populate("vendorId");
+      console.log(id,allProduct)
       res.status(200).json(allProduct);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.fetchProductsby = async (req, res) => {
-  try {
-    const { id } = await req.params;
-    const product = await Product.findById(id);
-    res.status(201).json(product);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+
 
 exports.updateProduct = async (req, res) => {
   try {
