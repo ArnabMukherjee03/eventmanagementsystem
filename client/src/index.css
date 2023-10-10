@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;800&family=Merriweather:wght@300&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.nav-animation{
+    transition: 0.4s all cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.navActive{
+    background: #fff;
+    box-shadow: 0 4px 5px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.bgSignup{
+    background-image: url(https://images.unsplash.com/photo-1558522195-e1201b090344?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+}
+
+.bgSignup::after{
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.1);
+}
+
+
+/* React Toaster Css */
+.go3958317564 {
+    font-family: 'Cinzel', serif!important;
+    font-size: 12px;
+}
+
+.banner{
+    background: url(https://plus.unsplash.com/premium_photo-1661396937099-8f75b601d319?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXRtfGVufDB8MHwwfHx8MA%3D%3D&auto=format&fit=crop&w=1440&q=60);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.banner::before{
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 90vh;
+    background: rgba(0,0,0,0.5);
+}
+
+.banner-btn::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: unset;
+    right: 0;
+    width: 0;
+    height: 100%;
+    z-index: -1;
+    background-color: #fff;
+    transition: 0.4s all ease-in-out 0s;
+}
+
+.grid-indigo {
+    background-image: radial-gradient(#fff 2px, transparent 2px);
+    background-size: 16px 16px;
+}
+
+.banner-btn:hover::before{
+    right: unset;
+    left: 0;
+    width: 100%;
+}
+
